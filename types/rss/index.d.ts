@@ -82,11 +82,24 @@ declare namespace NodeRSS {
         custom_elements?: any[];
     }
 
-    interface EnclosureObject {
+    interface EnclosureObjectWithURl {
         /**
          * URL to file object (or file).
          */
         url: string;
+        /**
+         * Size of the file.
+         */
+        size?: number;
+        /**
+         * If not provided, the MIME Type will be guessed based
+         * on the extension of the file or URL, passing type to
+         * the enclosure will override the guessed type.
+         */
+        type?: string;
+    }
+    
+    interface EnclosureObjectWithFile {
         /**
          * Path to binary file (or URL).
          */
@@ -102,6 +115,8 @@ declare namespace NodeRSS {
          */
         type?: string;
     }
+    
+    type EnclosureObject = EnclosureObjectWithUrl | EnclosureObjectWithFile
 
     interface ItemOptions {
         /**
